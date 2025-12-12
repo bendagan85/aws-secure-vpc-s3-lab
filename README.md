@@ -10,7 +10,7 @@ The primary goal was to enable a **private EC2 instance** (isolated from the pub
 * **Connectivity:** Established **VPC Peering** with the default VPC for cross-network communication.
 * **Private Link:** Deployed an **S3 Gateway Endpoint** to route storage traffic internally within the AWS backbone, bypassing the public internet entirely.
 
-![Architecture Diagram](assets/architecture-diagram.png)
+![Architecture Diagram](architecture-diagram.png)
 
 ## 🛠️ Implementation Steps
 1. **Network Infrastructure:** Built a custom VPC with Public and Private subnets, Internet Gateway, and custom Route Tables.
@@ -21,18 +21,18 @@ The primary goal was to enable a **private EC2 instance** (isolated from the pub
 
 ## 📸 Proof of Concept (POC)
 
-### 1. Network Isolation
+### 1. Instance Isolation
 Demonstrating the security posture: The Private Instance has NO Public IP address, while the Bastion Host does.
-![EC2 Dashboard](assets/ec2-dashboard-proof.png)
+![EC2 Dashboard](instances.png)
 
 ### 2. Secure Access (SSH Jump)
 Successfully connected to the Private IP (`10.0.2.x`) via the Bastion Host using SSH Agent Forwarding / Key management.
-![SSH Connection](assets/ssh-proof.png)
+![SSH Connection](proof%20of%20ssh%20to%20private%20ec2.png)
 
 ### 3. S3 Upload via PrivateLink
 **The Challenge:** Upload a file to S3 from a server with NO internet access.
 **The Result:** Successfully uploaded `secret.txt` via the VPC Endpoint.
-![S3 Upload Proof](assets/proof-of-upload-to-s3-no-igw.png)
+![S3 Upload Proof](proof%20of%20upload%20to%20s3%20no%20igw.png)
 
 ## 💻 Tech Stack
 * **Cloud Provider:** AWS (VPC, EC2, S3, IAM, VPC Endpoints)
